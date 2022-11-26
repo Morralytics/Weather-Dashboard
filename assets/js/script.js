@@ -18,8 +18,9 @@ $(function() {
         var listEl = $('<div>');
         var listDetail = city;
 
-        bootstrapDiv.addClass('card');
-        bootstrapDiv.addClass('card-body history-item').text(listDetail);
+    
+        bootstrapDiv.addClass('card card-body history-item custom-card');
+        listEl.addClass('list-text').text(listDetail);
         bootstrapDiv.appendTo(historySection);
         listEl.appendTo(bootstrapDiv);
     }

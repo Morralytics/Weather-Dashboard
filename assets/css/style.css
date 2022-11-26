@@ -20,6 +20,18 @@ h2 {
     background-color: #219ebc;
 }
 
+hr {
+    width: 100%;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+.history-item {
+    margin-bottom: 10px;
+    background-color: lightgray;
+    text-align: center;
+}
+
 @media (max-width: 425px){
     .btn {
         font-size: small;
@@ -28,10 +40,12 @@ h2 {
         padding: 0;
         font-size: small;
     }
-}
 
-hr {
-    width: 100%;
-    border: 1px solid lightgray;
-    border-radius: 5px;
+    .history-item {
+        padding: 10%;
+    }
+
+    .list-text {
+        font-size: small;
+    }
 }
