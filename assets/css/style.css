@@ -20,7 +20,7 @@ h2 {
     background-color: #219ebc;
 }
 
-@media screen and (max-width: 425px){
+@media (max-width: 425px){
     .btn {
         font-size: small;
     }
