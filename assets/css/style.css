@@ -19,3 +19,13 @@ h2 {
     color: white;
     background-color: #219ebc;
 }
+
+@media screen and (max-width: 425px){
+    .btn {
+        font-size: small;
+    }
+    .city-input {
+        padding: 0;
+        font-size: small;
+    }
+}
