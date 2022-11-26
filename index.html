@@ -12,11 +12,39 @@
     <title>Weather Dashboard</title>
   </head>
   <body>
-    <header>
-        <h2>Weather Dashboard</h2>
+    <header class="container-fluid">
+      <h2>Weather Dashboard</h2>
     </header>
     <main>
-      
+        <div class="container-fluid">
+            <div class="row"> 
+                <div class="col-3 col-sm-3 d-flex flex-column p-3">
+                    <!-- This will be the space for the input text -->
+                    <h3 class="city-search">Search for a City:</h3>
+                    <div class="input-group pb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="San Diego"
+                          aria-label="City name"
+                        />
+                      </div>
+                      <div class="saveBtn d-flex justify-content-center">
+                          <button
+                            class="btn btn-outline-secondary w-100"
+                            type="button"
+                            id="button-addon2"
+                          >
+                            Search
+                          </button>
+                      </div>
+                </div>
+                <div class="col">
+                    <!-- This will be the space for grabbed information -->
+                </div>
+            </div>
+        </div>
+      </div>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>

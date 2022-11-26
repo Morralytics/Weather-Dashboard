@@ -1,5 +1,21 @@
 header {
     text-align: center;
-    background-color: purple;
+    background-image:linear-gradient(to right, #8ecae6, #219ebc, #023047);
+    padding: 10px;
+}
+
+h2 {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 36px;
     color: white;
+}
+
+.city-search {
+    font-weight: bold;
+}
+
+.btn {
+    color: white;
+    background-color: #219ebc;
 }
