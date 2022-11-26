@@ -29,3 +29,9 @@ h2 {
         font-size: small;
     }
 }
+
+hr {
+    width: 100%;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
