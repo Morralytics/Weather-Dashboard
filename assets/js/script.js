@@ -16,9 +16,12 @@ $(function() {
     var setStorage = function() {
         var storageKeys = Object.keys(localStorage);
 
-        storageKeys.forEach((key) => {
-            console.log(key + ' ' + localStorage[key]);
-        });
+        
+        if (storageKeys !== null) {
+            storageKeys.forEach((key) => {
+                printHistory(localStorage.getItem(key))
+            });
+        }
     }
 
     var printHistory = function(city) {
