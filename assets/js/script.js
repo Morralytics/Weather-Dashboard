@@ -1,10 +1,19 @@
 // On-load function
 $(function() {
 
+    requestUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=1a91782a2d8a6d880d1f0a1bb5990c24';
     var btn = $('.btn');
     var historySection = $('.city-searches')
     var numOfSearches = null;
     
+    fetch(requestUrl)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            console.log(data);
+        })
+
     btn.click(function() {
         var userInput = $('.city-input').val();
         numOfSearches += 1;       
