@@ -1,21 +1,16 @@
 // On-load function
 $(function() {
 
-    requestUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=1a91782a2d8a6d880d1f0a1bb5990c24';
+    
     var btn = $('.btn');
     var historySection = $('.city-searches')
     var numOfSearches = null;
     
-    fetch(requestUrl)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(data) {
-            console.log(data);
-        })
+    
 
     btn.click(function() {
         var userInput = $('.city-input').val();
+        var userInputLower = $('.city-input').val().toLowerCase();
         numOfSearches += 1;       
 
         localStorage.setItem(JSON.stringify(numOfSearches), userInput);
@@ -23,6 +18,7 @@ $(function() {
         if ($('.card temp') !== null) {
             clearCurrentWeatherInfo();
         }
+        getLocationUrl(userInputLower);
         printHistory(userInput);
         printCityWeatherInfo(userInput);
     });
@@ -36,6 +32,18 @@ $(function() {
                 printHistory(localStorage.getItem(key))
             });
         }
+    }
+
+    var getLocationUrl = function(city) {
+        requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=1a91782a2d8a6d880d1f0a1bb5990c24&units=imperial`;
+
+        fetch(requestUrl)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            console.log(data);
+        })
     }
 
     var printHistory = function(city) {
