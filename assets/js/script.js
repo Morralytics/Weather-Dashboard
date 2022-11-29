@@ -35,15 +35,7 @@ $(function() {
     }
 
     var getLocationUrl = function(city) {
-        requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=1a91782a2d8a6d880d1f0a1bb5990c24&units=imperial`;
-
-        fetch(requestUrl)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(data) {
-            console.log(data);
-        })
+        
     }
 
     var printHistory = function(city) {
@@ -59,6 +51,7 @@ $(function() {
     }
 
     var printCityWeatherInfo = function(city) {
+        var requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=1a91782a2d8a6d880d1f0a1bb5990c24&units=imperial`;
         var placementDiv = $('.weather-info');
         var bootstrapDiv = $('<div>');
         var headerDiv = $('<div>');
@@ -66,18 +59,41 @@ $(function() {
         var cardTitle = $('<h5>');
         var cardText = $('<p>');
         var listDetail = city;
+        
+        fetch(requestUrl)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            console.log(data);
+            for (i = 0; i < data.list.length; i++) {
+                var arr = data.list[i].dt_txt.split([''])
+                var time = arr[11] + arr[12];
+                if (time == 15) {
+                    console.log(data.list[i]);
+                }
+            }
+            // var time = new Date();
+            // var localTime = time.getTime();
+            // var localOffset = time.getTimezoneOffset() * 60000;
+            // var utc = localTime + localOffset;
+            // var userCity = utc +(1000 * data.city.timezone);
+            // console.log(new Date(userCity));
+            // cardText.addClass('card-text temp').text(data);
+        });
 
         bootstrapDiv.addClass('card temp');
         headerDiv.addClass('card-header temp').text('Search for a city to get a full 5 day forcast!');
         bodyDiv.addClass('card-body temp');
         cardTitle.addClass('card-title temp').text(listDetail);
-        cardText.addClass('card-text temp').text('Temp, wind, humidity placeholder');
 
         bootstrapDiv.appendTo(placementDiv);
         headerDiv.appendTo(bootstrapDiv);
         bodyDiv.appendTo(bootstrapDiv);
         cardTitle.appendTo(bodyDiv);
         cardText.appendTo(bodyDiv);
+
+
     }
 
     var clearCurrentWeatherInfo = function() {
