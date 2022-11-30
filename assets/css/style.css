@@ -32,6 +32,11 @@ hr {
     text-align: center;
 }
 
+.card-body,
+.temp {
+    margin-bottom: 20px;
+}
+
 @media (max-width: 425px){
     .btn {
         font-size: small;
