@@ -7,7 +7,7 @@ $(function() {
     var numOfSearches = null;
     
     
-
+    // Produces an on click function storing user information into local storage
     btn.click(function() {
         var userInput = $('.city-input').val();
         var userInputLower = $('.city-input').val().toLowerCase();
@@ -23,6 +23,7 @@ $(function() {
         printCityWeatherInfo(userInput);
     });
 
+    // sets the local storage and upon reload, if there is information, it will then display
     var setStorage = function() {
         var storageKeys = Object.keys(localStorage);
 
@@ -34,10 +35,7 @@ $(function() {
         }
     }
 
-    var getLocationUrl = function(city) {
-        
-    }
-
+    // Prints the amount of searched items based on the amount in local storage
     var printHistory = function(city) {
         var bootstrapDiv = $('<div>');
         var listEl = $('<div>');
@@ -50,6 +48,7 @@ $(function() {
         listEl.appendTo(bootstrapDiv);
     }
 
+    // This is where the information on the API is stored as well as logging the information given
     var printCityWeatherInfo = function(city) {
         var requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=1a91782a2d8a6d880d1f0a1bb5990c24&units=imperial`;
         var placementDiv = $('.weather-info');
@@ -69,6 +68,11 @@ $(function() {
         .then(function(data) {
             var listOfDays = [];
             console.log(data);
+            // This is what I was not able to complete
+            // Through research and API documentation I was unable to figure out how to grab API information on a daily basis rather than a 3 hour basis
+            // I could have just grabbed from an index however, with variation of time based on when the user is using the cite, it would not work
+            // I also though of using a specific index at a specific time to use that information however if a user used the cite AFTER that time slot, it would push to the next day which would not work
+            // There were a lot of factors that I wasn't able to work out on paper
             for (i = 0; i < data.list.length; i++) {
                 var arr = data.list[i].dt_txt.split([''])
                 var time = arr[11] + arr[12];
@@ -77,6 +81,8 @@ $(function() {
                 var timeStamp = new Date(data.list[i].dt * 1000);
                 console.log(timeStamp);
             }
+
+            // This logs the current time and date that I was going to use to compare to the items from the API
             var time = new Date();
             var localTime = time.getTime();
             var localOffset = time.getTimezoneOffset() * 60000;
@@ -106,6 +112,7 @@ $(function() {
         }
     }
 
+    // This function clears any items with room for updated items in local storage
     var clearCurrentWeatherInfo = function() {
         $('.weather-info').empty();
     }
