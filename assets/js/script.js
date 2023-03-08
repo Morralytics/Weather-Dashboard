@@ -41,9 +41,9 @@ $(function() {
     var printHistory = function(city) {
         for(i = 0; i < city.length; i++) {
             var bootstrapDiv = $('<div>');
-            var listEl = $('<div>');
-            bootstrapDiv.addClass('card card-body history-item custom-card');
-            listEl.addClass('list-text').text(city[i]);
+            var listEl = $('<button>');
+            bootstrapDiv.addClass('card card-body custom-card');
+            listEl.addClass('card card-body list-text history-item').text(city[i]);
             bootstrapDiv.appendTo(historySection);
             listEl.appendTo(bootstrapDiv);
         }

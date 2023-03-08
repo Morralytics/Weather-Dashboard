@@ -27,9 +27,15 @@ hr {
 }
 
 .history-item {
+    display: flex;
+    align-items: center;
     margin-bottom: 10px;
     background-color: lightgray;
-    text-align: center;
+}
+
+.custom-card {
+    padding: 0;
+    border: 0;
 }
 
 @media (max-width: 425px){
