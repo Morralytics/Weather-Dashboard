@@ -1,15 +1,13 @@
 // On-load function
-var userInputHistory = [];
-
 $(function() { 
     var btn = $('.btn');
     var historySection = $('.city-searches')
-    var numOfSearches = null;
     
     // Produces an on click function storing user information into local storage
     btn.click(function() {
         var userInput = $('.city-input').val();
-        userInputHistory.push(userInput);      
+        var userInputHistory = JSON.parse(localStorage.getItem('user-history'));
+        userInputHistory.push(userInput);     
 
         localStorage.setItem('user-history', JSON.stringify(userInputHistory));
 
@@ -17,17 +15,15 @@ $(function() {
             clearCurrentWeatherInfo();
         }
   
-        printHistory(userInput);
+        printHistory(getStorage());
         printCityWeatherInfo(userInput);
     });
 
     // sets the local storage and upon reload, if there is information, it will then display
     var setStorage = function() {
-        var storedHistory = localStorage.getItem('user-history');
-        var parsedHistory = JSON.parse(storedHistory);
-
-        if (storedHistory !== null) {
-            printHistory(parsedHistory);
+        console.log(getStorage());
+        if (getStorage() !== null) {
+            printHistory(getStorage());
         }
     }
 
@@ -102,5 +98,11 @@ $(function() {
     var filterApiObj = function(data) {
         return data.list[0];
     }
+
+    var getStorage = function(data) {
+        var storedHistory = localStorage.getItem('user-history');
+        return JSON.parse(storedHistory);
+    }
+
     setStorage();
 });
