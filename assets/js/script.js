@@ -1,4 +1,6 @@
 // On-load function
+var userInputHistory = [];
+
 $(function() { 
     var btn = $('.btn');
     var historySection = $('.city-searches')
@@ -7,27 +9,25 @@ $(function() {
     // Produces an on click function storing user information into local storage
     btn.click(function() {
         var userInput = $('.city-input').val();
-        var userInputLower = $('.city-input').val().toLowerCase();
-        numOfSearches += 1;       
+        userInputHistory.push(userInput);      
 
-        localStorage.setItem(JSON.stringify(numOfSearches), userInput);
+        localStorage.setItem('user-history', JSON.stringify(userInputHistory));
 
         if ($('.card temp') !== null) {
             clearCurrentWeatherInfo();
         }
-        // getLocationUrl(userInputLower);
+  
         printHistory(userInput);
         printCityWeatherInfo(userInput);
     });
 
     // sets the local storage and upon reload, if there is information, it will then display
     var setStorage = function() {
-        var storageKeys = Object.keys(localStorage);
+        // var storageKeys = Object.keys(localStorage);
 
-        if (storageKeys !== null) {
-            storageKeys.forEach((key) => {
-                printHistory(localStorage.getItem(key))
-            });
+        var storedHistory = localStorage.getItem('user-history');
+        if (storedHistory !== null) {
+                printHistory(JSON.parse(storedHistory));
         }
     }
 
@@ -56,8 +56,7 @@ $(function() {
             var tempF = filterApiObj(data).main.temp;
             var wind = filterApiObj(data).wind.speed;
             var humidity = filterApiObj(data).main.humidity;
-            var icon = `https://openweathermap.org/img/w/${filterApiObj(data).weather[0].icon}.png`
-            console.log(tempF)
+            var icon = `https://openweathermap.org/img/w/${filterApiObj(data).weather[0].icon}.png`;
             dailyCardRender(city, tempF, wind, humidity, icon);
         });
     }
