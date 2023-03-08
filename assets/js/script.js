@@ -1,4 +1,5 @@
 // On-load function
+var userInputArr = [];
 $(function() { 
     var btn = $('.btn');
     var historySection = $('.city-searches')
@@ -6,16 +7,23 @@ $(function() {
     // Produces an on click function storing user information into local storage
     btn.click(function() {
         var userInput = $('.city-input').val();
+        var userInputTest = localStorage.getItem('user-history');
         var userInputHistory = JSON.parse(localStorage.getItem('user-history'));
-        userInputHistory.push(userInput);     
 
-        localStorage.setItem('user-history', JSON.stringify(userInputHistory));
+        if (userInputTest === null) {
+            userInputArr.push(userInput);     
+            localStorage.setItem('user-history', JSON.stringify(userInputArr));
+            printHistory(userInput);
+        }
+        
+        userInputHistory.push(userInput);
+        localStorage.setItem('user-history', JSON.stringify(userInputHistory))
 
         if ($('.card temp') !== null) {
             clearCurrentWeatherInfo();
         }
   
-        printHistory(getStorage());
+        printHistory(userInput);
         printCityWeatherInfo(userInput);
     });
 
@@ -99,7 +107,7 @@ $(function() {
         return data.list[0];
     }
 
-    var getStorage = function(data) {
+    var getStorage = function() {
         var storedHistory = localStorage.getItem('user-history');
         return JSON.parse(storedHistory);
     }
