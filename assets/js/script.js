@@ -1,12 +1,10 @@
 // On-load function
 var userInputArr = [];
-$(function() { 
-    var btn = $('.btn');
-    var historyBtn = $('.history-button');
+$(document).ready(function() { 
     var historySection = $('.city-searches')
     
     // Produces an on click function storing user information into local storage
-    btn.click(function() {
+    $(document).on('click', '.btn', function() {
         var userInputArr = [];
         var userInput = $('.city-input').val();
         var userInputTest = localStorage.getItem('user-history');
@@ -47,7 +45,7 @@ $(function() {
             var listEl = $('<button>');
             bootstrapDiv.addClass('card card-body custom-card');
             listEl.addClass('history-button card card-body list-text history-item').text(city[i]);
-            // listEl.attr('type', 'button');
+            listEl.attr('id', 'history-button');
             bootstrapDiv.appendTo(historySection);
             listEl.appendTo(bootstrapDiv);
         }
