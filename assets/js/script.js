@@ -31,9 +31,16 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '.history-button', function() {
-        userInputArr.push($(this).text());
-
-        printCityWeatherInfo(userInputArr);
+        clearCurrentWeatherInfo();
+        if(userInputArr === 0) {
+            userInputArr.push($(this).text());
+            console.log(userInputArr)
+            printCityWeatherInfo(userInputArr);
+        } else {
+            userInputArr.pop();
+            userInputArr.push($(this).text());
+            printCityWeatherInfo(userInputArr);
+        }
     });
 
     // sets the local storage and upon reload, if there is information, it will then display
