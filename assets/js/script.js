@@ -23,24 +23,24 @@ $(function() {
 
     // sets the local storage and upon reload, if there is information, it will then display
     var setStorage = function() {
-        // var storageKeys = Object.keys(localStorage);
-
         var storedHistory = localStorage.getItem('user-history');
+        var parsedHistory = JSON.parse(storedHistory);
+
         if (storedHistory !== null) {
-                printHistory(JSON.parse(storedHistory));
+            printHistory(parsedHistory);
         }
     }
 
     // Prints the amount of searched items based on the amount in local storage
     var printHistory = function(city) {
-        var bootstrapDiv = $('<div>');
-        var listEl = $('<div>');
-        var listDetail = city;
-
-        bootstrapDiv.addClass('card card-body history-item custom-card');
-        listEl.addClass('list-text').text(listDetail);
-        bootstrapDiv.appendTo(historySection);
-        listEl.appendTo(bootstrapDiv);
+        for(i = 0; i < city.length; i++) {
+            var bootstrapDiv = $('<div>');
+            var listEl = $('<div>');
+            bootstrapDiv.addClass('card card-body history-item custom-card');
+            listEl.addClass('list-text').text(city[i]);
+            bootstrapDiv.appendTo(historySection);
+            listEl.appendTo(bootstrapDiv);
+        }
     }
 
     // This is where the information on the API is stored as well as logging the information given
