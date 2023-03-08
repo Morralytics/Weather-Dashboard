@@ -33,6 +33,10 @@ hr {
     background-color: lightgray;
 }
 
+.history-item:hover {
+    background-color:#219ebc;
+}
+
 .custom-card {
     padding: 0;
     border: 0;

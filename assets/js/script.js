@@ -2,29 +2,32 @@
 var userInputArr = [];
 $(function() { 
     var btn = $('.btn');
+    var historyBtn = $('.history-button');
     var historySection = $('.city-searches')
     
     // Produces an on click function storing user information into local storage
     btn.click(function() {
         var userInputArr = [];
         var userInput = $('.city-input').val();
-        userInputArr.push(userInput);
         var userInputTest = localStorage.getItem('user-history');
         var userInputHistory = JSON.parse(localStorage.getItem('user-history'));
-
+        
         if (userInputTest === null) {
             userInputArr.push(userInput);     
             localStorage.setItem('user-history', JSON.stringify(userInputArr));
             printHistory(userInputArr);
+            printCityWeatherInfo(userInput);
+            console.log(userInputArr)
         }
         
+        userInputArr.push(userInput);
         userInputHistory.push(userInput);
         localStorage.setItem('user-history', JSON.stringify(userInputHistory))
 
         if ($('.card temp') !== null) {
             clearCurrentWeatherInfo();
         }
-  
+        
         printHistory(userInputArr);
         printCityWeatherInfo(userInput);
     });
@@ -43,7 +46,8 @@ $(function() {
             var bootstrapDiv = $('<div>');
             var listEl = $('<button>');
             bootstrapDiv.addClass('card card-body custom-card');
-            listEl.addClass('card card-body list-text history-item').text(city[i]);
+            listEl.addClass('history-button card card-body list-text history-item').text(city[i]);
+            // listEl.attr('type', 'button');
             bootstrapDiv.appendTo(historySection);
             listEl.appendTo(bootstrapDiv);
         }
