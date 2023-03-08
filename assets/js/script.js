@@ -30,6 +30,10 @@ $(document).ready(function() {
         printCityWeatherInfo(userInput);
     });
 
+    $(document).on('click', '.history-button', function() {
+        alert($(this).text());
+    });
+    
     // sets the local storage and upon reload, if there is information, it will then display
     var setStorage = function() {
         console.log(getStorage());
