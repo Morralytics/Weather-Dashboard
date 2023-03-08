@@ -6,14 +6,16 @@ $(function() {
     
     // Produces an on click function storing user information into local storage
     btn.click(function() {
+        var userInputArr = [];
         var userInput = $('.city-input').val();
+        userInputArr.push(userInput);
         var userInputTest = localStorage.getItem('user-history');
         var userInputHistory = JSON.parse(localStorage.getItem('user-history'));
 
         if (userInputTest === null) {
             userInputArr.push(userInput);     
             localStorage.setItem('user-history', JSON.stringify(userInputArr));
-            printHistory(userInput);
+            printHistory(userInputArr);
         }
         
         userInputHistory.push(userInput);
@@ -23,7 +25,7 @@ $(function() {
             clearCurrentWeatherInfo();
         }
   
-        printHistory(userInput);
+        printHistory(userInputArr);
         printCityWeatherInfo(userInput);
     });
 
