@@ -1,11 +1,8 @@
 // On-load function
-$(function() {
-
-    
+$(function() { 
     var btn = $('.btn');
     var historySection = $('.city-searches')
     var numOfSearches = null;
-    
     
     // Produces an on click function storing user information into local storage
     btn.click(function() {
@@ -40,7 +37,6 @@ $(function() {
         var listEl = $('<div>');
         var listDetail = city;
 
-    
         bootstrapDiv.addClass('card card-body history-item custom-card');
         listEl.addClass('list-text').text(listDetail);
         bootstrapDiv.appendTo(historySection);
@@ -50,7 +46,6 @@ $(function() {
     // This is where the information on the API is stored as well as logging the information given
     var printCityWeatherInfo = function(city) {
         var requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=1a91782a2d8a6d880d1f0a1bb5990c24`;
-        
         
         fetch(requestUrl)
         .then(function(response) {
@@ -65,7 +60,6 @@ $(function() {
             console.log(tempF)
             dailyCardRender(city, tempF, wind, humidity, icon);
         });
-
     }
 
     // This function clears any items with room for updated items in local storage
@@ -76,38 +70,34 @@ $(function() {
     var dailyCardRender = function(city, temp, wind, humidity, icon) {
         var placementDiv = $('.weather-info');
         var bootstrapDiv = $('<div>');
-        var bootstrapDiv2 = $('<div>')
         var headerDiv = $('<div>');
         var bodyDiv = $('<div>');
-        var bodyDiv2 = $('<div>');
         var cardTitle = $('<h5>');
         var cardText = $('<p>');
         var weatherIcon = $('<img>');
+        var tempEl = $('<p>');
+        var windEl = $('<p>');
+        var humidityEl = $('<p>');
         var listDetail = city;
 
         bootstrapDiv.addClass('card temp');
         headerDiv.addClass('card-header temp').text('Search another city to get a full 5 day forcast!');
         bodyDiv.addClass('card-body temp');
         cardTitle.addClass('card-title temp').text(listDetail);
-        cardTitle.addClass('card-title temp').text(temp);
-        cardTitle.addClass('card-title temp').text(wind);
-        cardTitle.addClass('card-title temp').text(humidity);
+        tempEl.text(`Temp: ${temp} F`);
+        windEl.text(`Wind: ${wind} Mph`);
+        humidityEl.text(`Humidity: ${humidity}%`);
         weatherIcon.attr('src', icon);
-
-        bootstrapDiv2.addClass('card smaller temp');
-        bodyDiv2.addClass('card-body smaller temp').text('Placeholder');
 
         bootstrapDiv.appendTo(placementDiv);
         headerDiv.appendTo(bootstrapDiv);
         bodyDiv.appendTo(bootstrapDiv);
         cardTitle.appendTo(bodyDiv);
         cardText.appendTo(bodyDiv);
-        weatherIcon.appendTo(placementDiv);
-
-        for (i = 0; i < 3; i ++) {
-            bootstrapDiv2.appendTo(placementDiv);
-            bodyDiv2.appendTo(bootstrapDiv2);
-        }
+        weatherIcon.appendTo(cardTitle);
+        tempEl.appendTo(bodyDiv);
+        windEl.appendTo(bodyDiv);
+        humidityEl.appendTo(bodyDiv);
     }
 
     var filterApiObj = function(data) {
