@@ -79,6 +79,7 @@ $(document).ready(function() {
             var humidity = filterApiObj(data).main.humidity;
             var icon = `https://openweathermap.org/img/w/${filterApiObj(data).weather[0].icon}.png`;
             dailyCardRender(city, tempF, wind, humidity, icon);
+            // forecastedWeather(data);
         });
     }
 
@@ -130,6 +131,14 @@ $(document).ready(function() {
         headerColumn.addClass('col-12');
         header.textContent = '5-Day Forecast:';
         header.appendTo(headerColumn);
+
+        for(i = 0; i < forecast.length; i++) {
+            if(forecast[i].dt >= startDate && forecast[i].dt < endDate) {
+                if(forecast[i].dt_txt.slice(11, 13) == '12') {
+                    //render forecast cards
+                }
+            }
+        }
     }
 
     var filterApiObj = function(data) {
