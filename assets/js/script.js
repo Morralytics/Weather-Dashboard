@@ -127,7 +127,22 @@ $(document).ready(function () {
         var humidity = forecast.main.humidity;
         var icon = `https://openweathermap.org/img/w/${forecast.weather[0].icon}.png`;
 
-        
+        var column = $('<div>');
+        var card = $('<div>');
+        var bodyDiv = $('<div>');
+        var cardTitle = $('<h5>');
+        var weatherIcon = $('<img>');
+        var tempEl = $('<p>');
+        var windEl = $('<p>');
+        var humidityEl = $('<p>');
+
+        card.appendTo(column);
+        bodyDiv.appendTo(card);
+        cardTitle.appendTo(card);
+        weatherIcon.appendTo(bodyDiv);
+        tempEl.appendTo(bodyDiv);
+        windEl.appendTo(bodyDiv);
+        humidityEl.appendTo(bodyDiv);
     }
 
     var forecastedWeather = function (forecast) {
