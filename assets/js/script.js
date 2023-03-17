@@ -2,6 +2,8 @@
 var userInputArr = [];
 $(document).ready(function () {
     var historySection = $('.city-searches')
+    // dayjs.extend(window.dayjs_plugin_utc);
+    // dayjs.extend(window.dayjs_plugin_timezone);
 
     // Produces an on click function storing user information into local storage
     $(document).on('click', '.btn', function () {
@@ -122,6 +124,7 @@ $(document).ready(function () {
     }
 
     var renderForecastedCard = function (forecast) {
+        var forecastPlacement = $('.weather-forecast')
         var tempF = forecast.main.temp;
         var wind = forecast.wind.speed;
         var humidity = forecast.main.humidity;
@@ -136,14 +139,6 @@ $(document).ready(function () {
         var windEl = $('<p>');
         var humidityEl = $('<p>');
 
-        card.appendTo(column);
-        bodyDiv.appendTo(card);
-        cardTitle.appendTo(card);
-        weatherIcon.appendTo(bodyDiv);
-        tempEl.appendTo(bodyDiv);
-        windEl.appendTo(bodyDiv);
-        humidityEl.appendTo(bodyDiv);
-
         column.attr('class', 'col-md five-day-card');
         card.attr('class', 'card');
         bodyDiv.attr('class', 'vard-body p-2');
@@ -152,16 +147,25 @@ $(document).ready(function () {
         windEl.text(`Wind: ${wind} Mph`);
         humidityEl.text(`Humidity: ${humidity}%`);
         weatherIcon.attr('src', icon);
-
         
+        card.appendTo(column);
+        bodyDiv.appendTo(card);
+        cardTitle.appendTo(card);
+        weatherIcon.appendTo(bodyDiv);
+        tempEl.appendTo(bodyDiv);
+        windEl.appendTo(bodyDiv);
+        humidityEl.appendTo(bodyDiv);
+
+        column.appendTo(forecastPlacement);
     }
 
     var forecastedWeather = function (forecast) {
+        console.log(forecast);
         var startDate = dayjs().add(1, 'day').startOf('day').unix();
         var endDate = dayjs().add(6, 'day').startOf('day').unix();
 
-        var headerColumn = document.createElement('div');
-        var header = document.createElement('h3');
+        var headerColumn = $('<div>');
+        var header = $('<h3>');
 
         headerColumn.addClass('col-12');
         header.textContent = '5-Day Forecast:';
@@ -170,7 +174,7 @@ $(document).ready(function () {
         for (i = 0; i < forecast.length; i++) {
             if (forecast[i].dt >= startDate && forecast[i].dt < endDate) {
                 if (forecast[i].dt_txt.slice(11, 13) == '12') {
-                    //render forecast cards
+                    renderForecastedCard(forecast[i]);
                 }
             }
         }
