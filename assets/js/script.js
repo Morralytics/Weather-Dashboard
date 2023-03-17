@@ -124,7 +124,12 @@ $(document).ready(function() {
         var startDate = dayjs().add(1, 'day').startOf('day').unix();
         var endDate = dayjs().add(6, 'day').startOf('day').unix();
 
-        
+        var headerColumn = document.createElement('div');
+        var header = document.createElement('h3');
+
+        headerColumn.addClass('col-12');
+        header.textContent = '5-Day Forecast:';
+        header.appendTo(headerColumn);
     }
 
     var filterApiObj = function(data) {
