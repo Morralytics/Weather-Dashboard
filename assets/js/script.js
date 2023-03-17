@@ -120,6 +120,13 @@ $(document).ready(function() {
         humidityEl.appendTo(bodyDiv);
     }
 
+    var forecastedWeather = function(forecast) {
+        var startDate = dayjs().add(1, 'day').startOf('day').unix();
+        var endDate = dayjs().add(6, 'day').startOf('day').unix();
+
+        
+    }
+
     var filterApiObj = function(data) {
         return data.list[0];
     }
