@@ -18,7 +18,7 @@
     <main>
         <div class="container-fluid">
             <div class="row"> 
-                <div class="city-searches col-3 col-sm-3 d-flex flex-column p-3">
+                <div class="city-searches col-3 col-sm-3 d-flex flex-column p-2 flex-wrap">
                     <!-- This will be the space for the input text -->
                     <h3 class="city-search">Search for a City:</h3>
                     <div class="input-group pb-3">
@@ -41,8 +41,12 @@
                     <hr>
                     <!-- This is where divs will be added to webpage on button click -->
                     </div>
-                    <div class="col weather-info"></div>
-                    <div class="col weather-forecast"></div>
+                    <div class="col-9">
+                      <div class="col weather-info"></div>
+                      <div class="row">
+                        <div class="col weather-forecast d-flex justify-content-around p-3"></div>
+                      </div>
+                    </div>
         </div>
       </div>
     </main>

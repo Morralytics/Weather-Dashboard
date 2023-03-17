@@ -2,8 +2,6 @@
 var userInputArr = [];
 $(document).ready(function () {
     var historySection = $('.city-searches')
-    // dayjs.extend(window.dayjs_plugin_utc);
-    // dayjs.extend(window.dayjs_plugin_timezone);
 
     // Produces an on click function storing user information into local storage
     $(document).on('click', '.btn', function () {
@@ -88,6 +86,7 @@ $(document).ready(function () {
     // This function clears any items with room for updated items in local storage
     var clearCurrentWeatherInfo = function () {
         $('.weather-info').empty();
+        $('.weather-forecast').empty();
     }
 
     var dailyCardRender = function (city, temp, wind, humidity, icon) {
@@ -103,7 +102,7 @@ $(document).ready(function () {
         var humidityEl = $('<p>');
         var listDetail = city;
 
-        bootstrapDiv.addClass('card temp');
+        bootstrapDiv.attr('class', 'card temp d-flex');
         headerDiv.addClass('card-header temp').text('Search another city to get a full 5 day forcast!');
         bodyDiv.addClass('card-body temp');
         cardTitle.addClass('card-title temp').text(listDetail);
@@ -139,10 +138,10 @@ $(document).ready(function () {
         var windEl = $('<p>');
         var humidityEl = $('<p>');
 
-        column.attr('class', 'col-md five-day-card');
+        column.attr('class', 'five-day-card');
         card.attr('class', 'card');
-        bodyDiv.attr('class', 'vard-body p-2');
-        cardTitle.attr('class', 'card-title');
+        bodyDiv.attr('class', 'card-body p-5');
+        cardTitle.attr('class', 'card-title').text(dayjs(forecast.dt_txt).format('M/D/YYYY'));
         tempEl.text(`Temp: ${tempF} F`);
         windEl.text(`Wind: ${wind} Mph`);
         humidityEl.text(`Humidity: ${humidity}%`);
@@ -150,7 +149,7 @@ $(document).ready(function () {
         
         card.appendTo(column);
         bodyDiv.appendTo(card);
-        cardTitle.appendTo(card);
+        cardTitle.appendTo(bodyDiv);
         weatherIcon.appendTo(bodyDiv);
         tempEl.appendTo(bodyDiv);
         windEl.appendTo(bodyDiv);
