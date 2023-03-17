@@ -14,7 +14,7 @@ This page will serve any and all users who want to search for a city and get acc
 
 Below you will find a screenshot to this website.
 
-![This is the webpage's first image showing the application](assets\images\Weather-Dashboard.png)
+![](assets/images/Weather-Dashboard.png)
 
 [Next will be the link you can reach the webpage at!](https://volexity21.github.io/Weather-Dashboard/)
 
