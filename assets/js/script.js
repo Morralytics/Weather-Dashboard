@@ -143,6 +143,17 @@ $(document).ready(function () {
         tempEl.appendTo(bodyDiv);
         windEl.appendTo(bodyDiv);
         humidityEl.appendTo(bodyDiv);
+
+        column.attr('class', 'col-md five-day-card');
+        card.attr('class', 'card');
+        bodyDiv.attr('class', 'vard-body p-2');
+        cardTitle.attr('class', 'card-title');
+        tempEl.text(`Temp: ${tempF} F`);
+        windEl.text(`Wind: ${wind} Mph`);
+        humidityEl.text(`Humidity: ${humidity}%`);
+        weatherIcon.attr('src', icon);
+
+        
     }
 
     var forecastedWeather = function (forecast) {
