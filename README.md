@@ -16,7 +16,9 @@ Below you will find a screenshot to this website.
 
 ![](assets/images/Weather-Dashboard.png)
 
-[Next will be the link you can reach the webpage at!](https://volexity21.github.io/Weather-Dashboard/)
+[Check out its functionality here!](https://volexity21.github.io/Weather-Dashboard/)
+
+[Feel free to join me through past and future projects!](https://github.com/Morralytics)
 
 ## Credits
 
